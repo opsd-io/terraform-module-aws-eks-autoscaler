@@ -1,18 +1,19 @@
+terraform {
+  required_version = ">= 1.5.5"
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0"
+    }
+    helm = {
+      source  = "hashicorp/helm"
+      version = "~> 2.0"
+    }
+  }
+}
+
 # https://github.com/kubernetes/autoscaler/tree/master/charts/cluster-autoscaler
-
-variable "cluster_region" {}
-variable "cluster_name" {}
-
-variable "chart_version" { default = null }
-
-
-variable "namespace" { default = "kube-system" }
-variable "service_account" { default = "cluster-autoscaler" }
-variable "release_name" { default = "cluster-autoscaler" }
-
-variable "role_name" { default = null }
-variable "openid_arn" { default = null }
-variable "openid_sub" { default = null }
 
 data "aws_iam_policy_document" "assume_role_policy" {
   statement {
